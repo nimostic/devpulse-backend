@@ -48,7 +48,7 @@ export const auth = (...roles: ROLES[]) => {
       if (roles.length && !roles.includes(user.role)) {
         return res.status(StatusCodes.FORBIDDEN).json({
           success: false,
-          message: "Forbidden: no access",
+          message: "Forbidden no access",
         });
       }
 
