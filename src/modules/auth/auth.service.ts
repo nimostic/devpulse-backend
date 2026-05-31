@@ -2,13 +2,11 @@ import bcrypt from "bcrypt";
 import { pool } from "../../db";
 import jwt from "jsonwebtoken";
 import config from "../../config";
+import type { User } from "./auth.interface";
 
-
-
-
-const createUserIntoDB = async (payload: any) => {
+const createUserIntoDB = async (payload: User) => {
   const { name, email, password, role } = payload;
-  const hashPassword = await bcrypt.hash(password, 10);
+  const hashPassword = await bcrypt.hash(password as string, 10);
 
   const result = await pool.query(
     `
@@ -57,10 +55,10 @@ const loginUserIntoDB = async (payload: {
     expiresIn: "1d",
   });
 
-//   const refreshToken = jwt.sign(jwtpayload, config.jwt_secret as string, {
-//     expiresIn: "1d",
-//   });
-  delete user.password
+  //   const refreshToken = jwt.sign(jwtpayload, config.jwt_secret as string, {
+  //     expiresIn: "1d",
+  //   });
+  delete user.password;
   return { token, user };
 };
 
