@@ -54,7 +54,7 @@ const getIssuesFromDB = async (query: {
   const reporterIds = [...new Set(issues.map((i) => i.reporter_id))];
 
   if (reporterIds.length === 0) {
-    return issuesResult;
+    return [];
   }
 
   // STEP 3: fetch users in batch

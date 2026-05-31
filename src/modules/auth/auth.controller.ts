@@ -12,10 +12,17 @@ const createUser = async (req: Request, res: Response) => {
       data: result.rows[0],
     });
   } catch (error: any) {
+    if (error.code === "23505") {
+      return res.status(409).json({
+        success: false,
+        message: "Email already exists",
+        errors: "Duplicate email is not allowed",
+      });
+    }
     res.status(StatusCodes.BAD_REQUEST).json({
       success: false,
       message: error.message,
-      error: error,
+      errors: error,
     });
   }
 };
@@ -30,7 +37,7 @@ const loginUser = async (req: Request, res: Response) => {
       message: "Login successful",
       data: result,
     });
-  } catch (error:any) {
+  } catch (error: any) {
     res.status(StatusCodes.UNAUTHORIZED).json({
       success: false,
       message: error.message,
