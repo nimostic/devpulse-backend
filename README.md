@@ -6,7 +6,7 @@ A role-based Issue Tracking REST API built with Node.js, Express, TypeScript, Po
 
 **Project Name:** DevPulse API
 
-**Live URL:** 
+**Live URL:**  https://dev-pulse-sooty-theta.vercel.app
 
 **Repository URL:** https://github.com/nimostic/devpulse-backend
 
